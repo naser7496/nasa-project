@@ -3,10 +3,12 @@ const request = require('supertest'); //because supertest makes request against 
 const app = require('../../app');//چون این app به ریکوست های ما گوش میدهد.
 
 const{mongoConnect} = require('../../../services/mongo');
+const { loadPlanetsData } = require('../../models/planets.model');
 
 describe('Launches API', ()=>{
     beforeAll(async()=>{
-             await mongoConnect()
+             await mongoConnect();
+             await loadPlanetsData();
         });
     describe('Test GET /launches', ()=>{
         test('it should respond with 200 success', async ()=>{
